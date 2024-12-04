@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Vec;
 import net.minestom.server.instance.block.Block;
-import net.minestom.server.utils.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.ByteBuffer;
@@ -93,7 +92,7 @@ public class SchematicBuilder {
 
             if (block == null) {
                 // Block not set, write an air value
-                Utils.writeVarInt(blockBytes, 0);
+                blockBytes.putInt(0);
                 continue;
             }
 
@@ -105,7 +104,7 @@ public class SchematicBuilder {
                 blockId = paletteMap.getInt(block);
             }
 
-            Utils.writeVarInt(blockBytes, blockId);
+            blockBytes.putInt(blockId);
         }
 
         var palette = new Block[paletteMap.size()];

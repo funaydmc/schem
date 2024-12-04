@@ -5,7 +5,6 @@ import net.minestom.server.coordinate.Vec;
 import net.minestom.server.instance.batch.BatchOption;
 import net.minestom.server.instance.batch.RelativeBlockBatch;
 import net.minestom.server.instance.block.Block;
-import net.minestom.server.utils.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -65,7 +64,7 @@ public record Schematic(
         for (int y = 0; y < size().y(); y++) {
             for (int z = 0; z < size().z(); z++) {
                 for (int x = 0; x < size().x(); x++) {
-                    var block = palette[Utils.readVarInt(blocks)];
+                    var block = palette[blocks.get()];
                     if (block == null) {
                         logger.log(System.Logger.Level.WARNING, "Missing palette entry at {0}, {1}, {2}", x, y, z);
                         block = Block.AIR;
